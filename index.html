@@ -3,386 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OBD2 Tool - Landcruiser 76</title>
+    <title>Simple OBD2 Scanner</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: Arial, sans-serif;
-            background: #1a1a1a;
-            color: white;
-            padding: 20px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            color: #ff4444;
-            margin-bottom: 10px;
-        }
-
-        .controls {
-            background: #2a2a2a;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .status {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .indicator {
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: red;
-        }
-
-        .indicator.connected {
-            background: #00ff00;
-        }
-
-        button {
-            background: #ff4444;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 5px;
-        }
-
-        button:hover {
-            background: #ff6666;
-        }
-
-        button:disabled {
-            background: #666;
-            cursor: not-allowed;
-        }
-
-        .data-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .data-card {
-            background: #2a2a2a;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .data-card h3 {
-            color: #888;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .value {
-            font-size: 36px;
-            color: #ff4444;
-            font-weight: bold;
-        }
-
-        .unit {
-            color: #666;
-            font-size: 14px;
-        }
-
-        .console {
-            background: #000;
-            border: 1px solid #444;
-            padding: 10px;
-            height: 200px;
-            overflow-y: auto;
             font-family: monospace;
-            font-size: 12px;
+            background: #000;
+            color: #0f0;
+            padding: 20px;
+            margin: 0;
         }
-
-        .log-line {
-            margin-bottom: 5px;
+        
+        h1 {
+            color: #0f0;
+            font-size: 20px;
         }
-
-        .sent {
-            color: #ff6666;
+        
+        button {
+            background: #333;
+            color: #0f0;
+            border: 1px solid #0f0;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            font-family: monospace;
         }
-
-        .received {
-            color: #66ff66;
+        
+        button:hover {
+            background: #0f0;
+            color: #000;
+        }
+        
+        #console {
+            background: #111;
+            border: 1px solid #0f0;
+            padding: 10px;
+            height: 400px;
+            overflow-y: auto;
+            margin-top: 20px;
+            white-space: pre-wrap;
+        }
+        
+        .command {
+            color: #ff0;
+        }
+        
+        .response {
+            color: #0ff;
+        }
+        
+        .error {
+            color: #f00;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>OBD2 Diagnostic Tool</h1>
-        <p>2011 Toyota Landcruiser 76 Series V8 Turbo Diesel</p>
-    </div>
-
-    <div class="controls">
-        <div class="status">
-            <div class="indicator" id="indicator"></div>
-            <span id="status">Disconnected</span>
-        </div>
-        <div>
-            <button id="connectBtn" onclick="toggleConnection()">Connect USB OBD2</button>
-            <button id="clearBtn" onclick="clearCodes()" disabled>Clear Codes</button>
-        </div>
-    </div>
-
-    <div class="data-grid">
-        <div class="data-card">
-            <h3>ENGINE RPM</h3>
-            <div class="value" id="rpm">----</div>
-            <div class="unit">RPM</div>
-        </div>
-        <div class="data-card">
-            <h3>VEHICLE SPEED</h3>
-            <div class="value" id="speed">----</div>
-            <div class="unit">km/h</div>
-        </div>
-        <div class="data-card">
-            <h3>COOLANT TEMP</h3>
-            <div class="value" id="coolant">----</div>
-            <div class="unit">°C</div>
-        </div>
-        <div class="data-card">
-            <h3>TURBO BOOST</h3>
-            <div class="value" id="boost">----</div>
-            <div class="unit">PSI</div>
-        </div>
-    </div>
-
-    <div class="console" id="console"></div>
+    <h1>OBD2 Scanner - 2011 Landcruiser 76</h1>
+    
+    <button onclick="connect()">Connect</button>
+    <button onclick="disconnect()">Disconnect</button>
+    <button onclick="testHandshake()">Test Handshake</button>
+    <button onclick="scanAll()">Scan All PIDs</button>
+    <button onclick="clearLog()">Clear Log</button>
+    
+    <div id="console"></div>
 
     <script>
         let port = null;
         let reader = null;
         let writer = null;
-        let connected = false;
 
-        function log(message, type = 'info') {
+        function log(msg, type = '') {
             const console = document.getElementById('console');
-            const line = document.createElement('div');
-            line.className = `log-line ${type}`;
-            line.textContent = `${new Date().toLocaleTimeString()} - ${message}`;
-            console.appendChild(line);
+            const entry = document.createElement('div');
+            entry.className = type;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+            console.appendChild(entry);
             console.scrollTop = console.scrollHeight;
         }
 
-        async function toggleConnection() {
-            if (connected) {
-                disconnect();
-            } else {
-                await connect();
-            }
+        function clearLog() {
+            document.getElementById('console').innerHTML = '';
         }
 
         async function connect() {
             try {
-                // Request port
+                log('Requesting serial port...');
                 port = await navigator.serial.requestPort();
+                
+                log('Opening port at 38400 baud...');
                 await port.open({ baudRate: 38400 });
 
-                // Setup streams
-                const textEncoder = new TextEncoderStream();
-                textEncoder.readable.pipeTo(port.writable);
-                writer = textEncoder.writable.getWriter();
+                const encoder = new TextEncoderStream();
+                encoder.readable.pipeTo(port.writable);
+                writer = encoder.writable.getWriter();
 
-                const textDecoder = new TextDecoderStream();
-                port.readable.pipeTo(textDecoder.writable);
-                reader = textDecoder.readable.getReader();
+                const decoder = new TextDecoderStream();
+                port.readable.pipeTo(decoder.writable);
+                reader = decoder.readable.getReader();
 
-                connected = true;
-                updateUI(true);
-                log('Connected to OBD2', 'sent');
-
-                // Initialize
-                await initOBD();
-                
-                // Start monitoring
-                startMonitoring();
-
-            } catch (error) {
-                log(`Error: ${error.message}`, 'received');
-                updateUI(false);
+                log('Connected!', 'response');
+            } catch (e) {
+                log(`Error: ${e.message}`, 'error');
             }
         }
 
-        function disconnect() {
+        async function disconnect() {
             if (reader) reader.cancel();
             if (writer) writer.close();
             if (port) port.close();
-            
-            connected = false;
-            updateUI(false);
-            log('Disconnected', 'received');
+            log('Disconnected', 'error');
         }
 
-        async function initOBD() {
-            // Reset
-            await sendCommand('ATZ');
-            await sleep(2000);
-            
-            // Echo off
-            await sendCommand('ATE0');
-            await sleep(100);
-            
-            // Auto protocol
-            await sendCommand('ATSP0');
-            await sleep(100);
-            
-            log('Initialization complete', 'received');
-        }
+        async function send(cmd) {
+            if (!writer) {
+                log('Not connected!', 'error');
+                return null;
+            }
 
-        async function sendCommand(cmd) {
-            if (!writer) return null;
-            
-            log(`> ${cmd}`, 'sent');
+            log(`SEND: ${cmd}`, 'command');
             await writer.write(cmd + '\r');
             
-            const response = await readResponse();
-            log(`< ${response}`, 'received');
-            
-            return response;
-        }
-
-        async function readResponse() {
+            // Read response
             let response = '';
+            let timeout = setTimeout(() => {}, 3000);
             
-            while (true) {
-                const { value, done } = await reader.read();
-                if (done) break;
-                
-                response += value;
-                
-                if (response.includes('>')) {
-                    return response.replace('>', '').trim();
+            try {
+                while (true) {
+                    const { value, done } = await reader.read();
+                    if (done) break;
+                    
+                    response += value;
+                    
+                    if (response.includes('>')) {
+                        clearTimeout(timeout);
+                        response = response.replace(/>/g, '').trim();
+                        log(`RECV: ${response}`, 'response');
+                        return response;
+                    }
                 }
+            } catch (e) {
+                clearTimeout(timeout);
+                log(`Read error: ${e.message}`, 'error');
+                return null;
             }
         }
 
-        async function startMonitoring() {
-            setInterval(async () => {
-                if (!connected) return;
-
-                // Read RPM
-                const rpmData = await sendCommand('010C');
-                if (rpmData && !rpmData.includes('NO DATA')) {
-                    const rpm = parseRPM(rpmData);
-                    document.getElementById('rpm').textContent = rpm;
-                }
-
-                // Read Speed
-                const speedData = await sendCommand('010D');
-                if (speedData && !speedData.includes('NO DATA')) {
-                    const speed = parseSpeed(speedData);
-                    document.getElementById('speed').textContent = speed;
-                }
-
-                // Read Coolant
-                const coolantData = await sendCommand('0105');
-                if (coolantData && !coolantData.includes('NO DATA')) {
-                    const coolant = parseCoolant(coolantData);
-                    document.getElementById('coolant').textContent = coolant;
-                }
-
-                // Read Boost
-                const boostData = await sendCommand('0111');
-                if (boostData && !boostData.includes('NO DATA')) {
-                    const boost = parseBoost(boostData);
-                    document.getElementById('boost').textContent = boost;
-                }
-            }, 1000);
-        }
-
-        function parseRPM(data) {
-            const bytes = data.match(/[0-9A-F]{2}/g);
-            if (bytes && bytes.length >= 4) {
-                const a = parseInt(bytes[2], 16);
-                const b = parseInt(bytes[3], 16);
-                return Math.round((a * 256 + b) / 4);
-            }
-            return '----';
-        }
-
-        function parseSpeed(data) {
-            const bytes = data.match(/[0-9A-F]{2}/g);
-            if (bytes && bytes.length >= 3) {
-                return parseInt(bytes[2], 16);
-            }
-            return '----';
-        }
-
-        function parseCoolant(data) {
-            const bytes = data.match(/[0-9A-F]{2}/g);
-            if (bytes && bytes.length >= 3) {
-                return parseInt(bytes[2], 16) - 40;
-            }
-            return '----';
-        }
-
-        function parseBoost(data) {
-            const bytes = data.match(/[0-9A-F]{2}/g);
-            if (bytes && bytes.length >= 3) {
-                const kpa = parseInt(bytes[2], 16);
-                const psi = ((kpa - 128) * 0.145).toFixed(1);
-                return psi;
-            }
-            return '----';
-        }
-
-        async function clearCodes() {
-            await sendCommand('04');
-            log('Trouble codes cleared', 'sent');
-        }
-
-        function updateUI(isConnected) {
-            const indicator = document.getElementById('indicator');
-            const status = document.getElementById('status');
-            const connectBtn = document.getElementById('connectBtn');
-            const clearBtn = document.getElementById('clearBtn');
-
-            if (isConnected) {
-                indicator.classList.add('connected');
-                status.textContent = 'Connected';
-                connectBtn.textContent = 'Disconnect';
-                clearBtn.disabled = false;
-            } else {
-                indicator.classList.remove('connected');
-                status.textContent = 'Disconnected';
-                connectBtn.textContent = 'Connect USB OBD2';
-                clearBtn.disabled = true;
-                
-                // Reset values
-                ['rpm', 'speed', 'coolant', 'boost'].forEach(id => {
-                    document.getElementById(id).textContent = '----';
-                });
-            }
-        }
-
-        function sleep(ms) {
+        async function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
 
-        // Check for Web Serial API
+        async function testHandshake() {
+            log('\n=== STARTING HANDSHAKE ===\n');
+            
+            // Reset
+            await send('ATZ');
+            await sleep(2000);
+            
+            // Get version
+            await send('ATI');
+            await sleep(100);
+            
+            // Echo off
+            await send('ATE0');
+            await sleep(100);
+            
+            // Line feeds off
+            await send('ATL0');
+            await sleep(100);
+            
+            // Set protocol auto
+            await send('ATSP0');
+            await sleep(100);
+            
+            // Test communication
+            await send('0100');
+            await sleep(100);
+            
+            // Get protocol
+            await send('ATDP');
+            
+            log('\n=== HANDSHAKE COMPLETE ===\n');
+        }
+
+        async function scanAll() {
+            log('\n=== SCANNING ALL STANDARD PIDS ===\n');
+            
+            // Common PIDs to test
+            const pids = [
+                ['0100', 'Supported PIDs 01-20'],
+                ['0101', 'Monitor Status'],
+                ['0103', 'Fuel System Status'],
+                ['0104', 'Engine Load'],
+                ['0105', 'Coolant Temperature'],
+                ['0106', 'Short Term Fuel Trim B1'],
+                ['0107', 'Long Term Fuel Trim B1'],
+                ['010B', 'Intake Manifold Pressure'],
+                ['010C', 'Engine RPM'],
+                ['010D', 'Vehicle Speed'],
+                ['010E', 'Timing Advance'],
+                ['010F', 'Intake Air Temperature'],
+                ['0110', 'MAF Air Flow'],
+                ['0111', 'Throttle Position'],
+                ['0113', 'O2 Sensors Present'],
+                ['011C', 'OBD Standard'],
+                ['011F', 'Runtime Since Start'],
+                ['0121', 'Distance with MIL'],
+                ['0123', 'Fuel Rail Pressure'],
+                ['012F', 'Fuel Level'],
+                ['0130', 'Warm-ups Since Clear'],
+                ['0131', 'Distance Since Clear'],
+                ['0133', 'Barometric Pressure'],
+                ['0142', 'Control Module Voltage'],
+                ['0143', 'Absolute Load'],
+                ['015C', 'Engine Oil Temperature'],
+                ['015E', 'Fuel Rate'],
+                ['0902', 'VIN']
+            ];
+
+            for (const [pid, desc] of pids) {
+                log(`\nTesting ${pid} - ${desc}:`);
+                await send(pid);
+                await sleep(200);
+            }
+            
+            log('\n=== SCAN COMPLETE ===\n');
+        }
+
+        // Check if browser supports Web Serial
         if (!('serial' in navigator)) {
-            alert('Web Serial API not supported. Please use Chrome or Edge.');
+            log('ERROR: Web Serial API not supported!', 'error');
+            log('Please use Chrome or Edge browser', 'error');
         }
     </script>
 </body>
