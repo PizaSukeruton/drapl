@@ -3,94 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple OBD2 Scanner</title>
+    <title>Landcruiser OBD2 Monitor</title>
     <style>
         body {
-            font-family: monospace;
-            background: #000;
-            color: #0f0;
-            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #222;
+            color: #fff;
             margin: 0;
+            padding: 20px;
         }
-        
+
         h1 {
-            color: #0f0;
-            font-size: 20px;
+            text-align: center;
+            color: #ff4444;
+            margin-bottom: 30px;
         }
-        
+
+        .controls {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
         button {
-            background: #333;
-            color: #0f0;
-            border: 1px solid #0f0;
-            padding: 10px 20px;
-            margin: 5px;
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 5px;
             cursor: pointer;
-            font-family: monospace;
+            margin: 0 10px;
         }
-        
+
         button:hover {
-            background: #0f0;
-            color: #000;
+            background: #ff6666;
         }
-        
-        #console {
+
+        button:disabled {
+            background: #666;
+        }
+
+        .status {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .connected {
+            color: #00ff00;
+        }
+
+        .disconnected {
+            color: #ff0000;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .data-item {
+            background: #333;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #444;
+        }
+
+        .label {
+            font-size: 12px;
+            color: #aaa;
+            margin-bottom: 5px;
+        }
+
+        .value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff4444;
+        }
+
+        .unit {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .log {
             background: #111;
-            border: 1px solid #0f0;
+            border: 1px solid #444;
+            border-radius: 5px;
             padding: 10px;
-            height: 400px;
-            overflow-y: auto;
             margin-top: 20px;
-            white-space: pre-wrap;
-        }
-        
-        .command {
-            color: #ff0;
-        }
-        
-        .response {
-            color: #0ff;
-        }
-        
-        .error {
-            color: #f00;
+            height: 150px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
         }
     </style>
 </head>
 <body>
-    <h1>OBD2 Scanner - 2011 Landcruiser 76</h1>
+    <h1>2011 Landcruiser 76 OBD2 Monitor</h1>
     
-    <button onclick="connect()">Connect</button>
-    <button onclick="disconnect()">Disconnect</button>
-    <button onclick="testHandshake()">Test Handshake</button>
-    <button onclick="scanAll()">Scan All PIDs</button>
-    <button onclick="clearLog()">Clear Log</button>
-    
-    <div id="console"></div>
+    <div class="controls">
+        <button id="connectBtn" onclick="toggleConnection()">Connect</button>
+        <button onclick="clearLog()">Clear Log</button>
+    </div>
+
+    <div class="status">
+        Status: <span id="status" class="disconnected">Disconnected</span>
+    </div>
+
+    <div class="data-grid">
+        <div class="data-item">
+            <div class="label">ENGINE RPM</div>
+            <div class="value" id="rpm">----</div>
+            <div class="unit">RPM</div>
+        </div>
+        <div class="data-item">
+            <div class="label">SPEED</div>
+            <div class="value" id="speed">----</div>
+            <div class="unit">km/h</div>
+        </div>
+        <div class="data-item">
+            <div class="label">COOLANT TEMP</div>
+            <div class="value" id="coolant">----</div>
+            <div class="unit">°C</div>
+        </div>
+        <div class="data-item">
+            <div class="label">INTAKE TEMP</div>
+            <div class="value" id="intake">----</div>
+            <div class="unit">°C</div>
+        </div>
+        <div class="data-item">
+            <div class="label">ENGINE LOAD</div>
+            <div class="value" id="load">----</div>
+            <div class="unit">%</div>
+        </div>
+        <div class="data-item">
+            <div class="label">BOOST</div>
+            <div class="value" id="boost">----</div>
+            <div class="unit">PSI</div>
+        </div>
+        <div class="data-item">
+            <div class="label">MAF FLOW</div>
+            <div class="value" id="maf">----</div>
+            <div class="unit">g/s</div>
+        </div>
+        <div class="data-item">
+            <div class="label">FUEL PRESSURE</div>
+            <div class="value" id="fuel">----</div>
+            <div class="unit">bar</div>
+        </div>
+        <div class="data-item">
+            <div class="label">BATTERY</div>
+            <div class="value" id="voltage">----</div>
+            <div class="unit">V</div>
+        </div>
+        <div class="data-item">
+            <div class="label">RUNTIME</div>
+            <div class="value" id="runtime">----</div>
+            <div class="unit">min</div>
+        </div>
+    </div>
+
+    <div class="log" id="log"></div>
 
     <script>
         let port = null;
         let reader = null;
         let writer = null;
+        let connected = false;
+        let interval = null;
 
-        function log(msg, type = '') {
-            const console = document.getElementById('console');
-            const entry = document.createElement('div');
-            entry.className = type;
-            entry.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
-            console.appendChild(entry);
-            console.scrollTop = console.scrollHeight;
+        function log(msg) {
+            const logDiv = document.getElementById('log');
+            logDiv.innerHTML += `${new Date().toLocaleTimeString()} - ${msg}\n`;
+            logDiv.scrollTop = logDiv.scrollHeight;
         }
 
         function clearLog() {
-            document.getElementById('console').innerHTML = '';
+            document.getElementById('log').innerHTML = '';
+        }
+
+        async function toggleConnection() {
+            if (connected) {
+                disconnect();
+            } else {
+                await connect();
+            }
         }
 
         async function connect() {
             try {
-                log('Requesting serial port...');
                 port = await navigator.serial.requestPort();
-                
-                log('Opening port at 38400 baud...');
                 await port.open({ baudRate: 38400 });
 
                 const encoder = new TextEncoderStream();
@@ -101,31 +208,46 @@
                 port.readable.pipeTo(decoder.writable);
                 reader = decoder.readable.getReader();
 
-                log('Connected!', 'response');
+                connected = true;
+                updateStatus(true);
+                log('Connected');
+
+                // Initialize
+                await send('ATZ');
+                await sleep(2000);
+                await send('ATE0');
+                await sleep(100);
+                await send('ATSP0');
+                await sleep(100);
+                
+                log('Ready');
+                startMonitoring();
+
             } catch (e) {
-                log(`Error: ${e.message}`, 'error');
+                log(`Error: ${e.message}`);
+                updateStatus(false);
             }
         }
 
-        async function disconnect() {
+        function disconnect() {
+            if (interval) clearInterval(interval);
             if (reader) reader.cancel();
             if (writer) writer.close();
             if (port) port.close();
-            log('Disconnected', 'error');
+            
+            connected = false;
+            updateStatus(false);
+            resetValues();
+            log('Disconnected');
         }
 
         async function send(cmd) {
-            if (!writer) {
-                log('Not connected!', 'error');
-                return null;
-            }
-
-            log(`SEND: ${cmd}`, 'command');
+            if (!writer) return null;
+            
             await writer.write(cmd + '\r');
             
-            // Read response
             let response = '';
-            let timeout = setTimeout(() => {}, 3000);
+            let timeout = setTimeout(() => {}, 1000);
             
             try {
                 while (true) {
@@ -136,103 +258,148 @@
                     
                     if (response.includes('>')) {
                         clearTimeout(timeout);
-                        response = response.replace(/>/g, '').trim();
-                        log(`RECV: ${response}`, 'response');
-                        return response;
+                        return response.replace(/>/g, '').trim();
                     }
                 }
             } catch (e) {
                 clearTimeout(timeout);
-                log(`Read error: ${e.message}`, 'error');
                 return null;
             }
         }
 
-        async function sleep(ms) {
+        function startMonitoring() {
+            interval = setInterval(async () => {
+                if (!connected) return;
+
+                // RPM - 010C
+                const rpm = await send('010C');
+                if (rpm && rpm.includes('41 0C')) {
+                    const bytes = rpm.match(/41 0C ([0-9A-F]{2}) ([0-9A-F]{2})/);
+                    if (bytes) {
+                        const value = (parseInt(bytes[1], 16) * 256 + parseInt(bytes[2], 16)) / 4;
+                        document.getElementById('rpm').textContent = Math.round(value);
+                    }
+                }
+
+                // Speed - 010D
+                const speed = await send('010D');
+                if (speed && speed.includes('41 0D')) {
+                    const bytes = speed.match(/41 0D ([0-9A-F]{2})/);
+                    if (bytes) {
+                        document.getElementById('speed').textContent = parseInt(bytes[1], 16);
+                    }
+                }
+
+                // Coolant - 0105
+                const coolant = await send('0105');
+                if (coolant && coolant.includes('41 05')) {
+                    const bytes = coolant.match(/41 05 ([0-9A-F]{2})/);
+                    if (bytes) {
+                        document.getElementById('coolant').textContent = parseInt(bytes[1], 16) - 40;
+                    }
+                }
+
+                // Intake temp - 010F
+                const intake = await send('010F');
+                if (intake && intake.includes('41 0F')) {
+                    const bytes = intake.match(/41 0F ([0-9A-F]{2})/);
+                    if (bytes) {
+                        document.getElementById('intake').textContent = parseInt(bytes[1], 16) - 40;
+                    }
+                }
+
+                // Load - 0104
+                const load = await send('0104');
+                if (load && load.includes('41 04')) {
+                    const bytes = load.match(/41 04 ([0-9A-F]{2})/);
+                    if (bytes) {
+                        const value = parseInt(bytes[1], 16) * 100 / 255;
+                        document.getElementById('load').textContent = Math.round(value);
+                    }
+                }
+
+                // Boost (MAP) - 0111
+                const boost = await send('0111');
+                if (boost && boost.includes('41 11')) {
+                    const bytes = boost.match(/41 11 ([0-9A-F]{2})/);
+                    if (bytes) {
+                        const kpa = parseInt(bytes[1], 16);
+                        const psi = (kpa - 101.3) * 0.145; // Convert to gauge pressure
+                        document.getElementById('boost').textContent = psi.toFixed(1);
+                    }
+                }
+
+                // MAF - 0110
+                const maf = await send('0110');
+                if (maf && maf.includes('41 10')) {
+                    const bytes = maf.match(/41 10 ([0-9A-F]{2}) ([0-9A-F]{2})/);
+                    if (bytes) {
+                        const value = (parseInt(bytes[1], 16) * 256 + parseInt(bytes[2], 16)) / 100;
+                        document.getElementById('maf').textContent = value.toFixed(1);
+                    }
+                }
+
+                // Fuel pressure - 0123
+                const fuel = await send('0123');
+                if (fuel && fuel.includes('41 23')) {
+                    const bytes = fuel.match(/41 23 ([0-9A-F]{2}) ([0-9A-F]{2})/);
+                    if (bytes) {
+                        const kpa = (parseInt(bytes[1], 16) * 256 + parseInt(bytes[2], 16)) * 10;
+                        const bar = kpa / 100;
+                        document.getElementById('fuel').textContent = Math.round(bar);
+                    }
+                }
+
+                // Voltage - 0142
+                const voltage = await send('0142');
+                if (voltage && voltage.includes('41 42')) {
+                    const bytes = voltage.match(/41 42 ([0-9A-F]{2}) ([0-9A-F]{2})/);
+                    if (bytes) {
+                        const value = (parseInt(bytes[1], 16) * 256 + parseInt(bytes[2], 16)) / 1000;
+                        document.getElementById('voltage').textContent = value.toFixed(1);
+                    }
+                }
+
+                // Runtime - 011F
+                const runtime = await send('011F');
+                if (runtime && runtime.includes('41 1F')) {
+                    const bytes = runtime.match(/41 1F ([0-9A-F]{2}) ([0-9A-F]{2})/);
+                    if (bytes) {
+                        const seconds = parseInt(bytes[1], 16) * 256 + parseInt(bytes[2], 16);
+                        document.getElementById('runtime').textContent = Math.round(seconds / 60);
+                    }
+                }
+
+            }, 1000); // Update every second
+        }
+
+        function updateStatus(isConnected) {
+            const status = document.getElementById('status');
+            const btn = document.getElementById('connectBtn');
+            
+            if (isConnected) {
+                status.textContent = 'Connected';
+                status.className = 'connected';
+                btn.textContent = 'Disconnect';
+            } else {
+                status.textContent = 'Disconnected';
+                status.className = 'disconnected';
+                btn.textContent = 'Connect';
+            }
+        }
+
+        function resetValues() {
+            const ids = ['rpm', 'speed', 'coolant', 'intake', 'load', 'boost', 'maf', 'fuel', 'voltage', 'runtime'];
+            ids.forEach(id => document.getElementById(id).textContent = '----');
+        }
+
+        function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
 
-        async function testHandshake() {
-            log('\n=== STARTING HANDSHAKE ===\n');
-            
-            // Reset
-            await send('ATZ');
-            await sleep(2000);
-            
-            // Get version
-            await send('ATI');
-            await sleep(100);
-            
-            // Echo off
-            await send('ATE0');
-            await sleep(100);
-            
-            // Line feeds off
-            await send('ATL0');
-            await sleep(100);
-            
-            // Set protocol auto
-            await send('ATSP0');
-            await sleep(100);
-            
-            // Test communication
-            await send('0100');
-            await sleep(100);
-            
-            // Get protocol
-            await send('ATDP');
-            
-            log('\n=== HANDSHAKE COMPLETE ===\n');
-        }
-
-        async function scanAll() {
-            log('\n=== SCANNING ALL STANDARD PIDS ===\n');
-            
-            // Common PIDs to test
-            const pids = [
-                ['0100', 'Supported PIDs 01-20'],
-                ['0101', 'Monitor Status'],
-                ['0103', 'Fuel System Status'],
-                ['0104', 'Engine Load'],
-                ['0105', 'Coolant Temperature'],
-                ['0106', 'Short Term Fuel Trim B1'],
-                ['0107', 'Long Term Fuel Trim B1'],
-                ['010B', 'Intake Manifold Pressure'],
-                ['010C', 'Engine RPM'],
-                ['010D', 'Vehicle Speed'],
-                ['010E', 'Timing Advance'],
-                ['010F', 'Intake Air Temperature'],
-                ['0110', 'MAF Air Flow'],
-                ['0111', 'Throttle Position'],
-                ['0113', 'O2 Sensors Present'],
-                ['011C', 'OBD Standard'],
-                ['011F', 'Runtime Since Start'],
-                ['0121', 'Distance with MIL'],
-                ['0123', 'Fuel Rail Pressure'],
-                ['012F', 'Fuel Level'],
-                ['0130', 'Warm-ups Since Clear'],
-                ['0131', 'Distance Since Clear'],
-                ['0133', 'Barometric Pressure'],
-                ['0142', 'Control Module Voltage'],
-                ['0143', 'Absolute Load'],
-                ['015C', 'Engine Oil Temperature'],
-                ['015E', 'Fuel Rate'],
-                ['0902', 'VIN']
-            ];
-
-            for (const [pid, desc] of pids) {
-                log(`\nTesting ${pid} - ${desc}:`);
-                await send(pid);
-                await sleep(200);
-            }
-            
-            log('\n=== SCAN COMPLETE ===\n');
-        }
-
-        // Check if browser supports Web Serial
+        // Check browser support
         if (!('serial' in navigator)) {
-            log('ERROR: Web Serial API not supported!', 'error');
-            log('Please use Chrome or Edge browser', 'error');
+            alert('Web Serial API not supported. Please use Chrome or Edge.');
         }
     </script>
 </body>
