@@ -1,241 +1,9 @@
-<div id="engineTab" class="tab-content">
-            <div class="data-grid">
-                <div class="data-card">
-                    <h3>Engine Load</h3>
-                    <div class="data-value" id="engineLoad">----</div>
-                    <div class="data-unit">%</div>
-                </div>
-                <div class="data-card">
-                    <h3>MAF Air Flow</h3>
-                    <div class="data-value" id="maf">----</div>
-                    <div class="data-unit">g/s</div>
-                </div>
-                <div class="data-card">
-                    <h3>Turbo VGT Position</h3>
-                    <div class="data-value" id="vgtPosition">----</div>
-                    <div class="data-unit">%</div>
-                </div>
-                <div class="data-card">
-                    <h3>Turbo Speed</h3>
-                    <div class="data-value" id="turboSpeed">----</div>
-                    <div class="data-unit">RPM</div>
-                </div>
-                <div class="data-card">
-                    <h3>Boost Desired</h3>
-                    <div class="data-value" id="boostDesired">----</div>
-                    <div class="data-unit">Bar</div>
-                </div>
-                <div class="data-card">
-                    <h3>Runtime</h3>
-                    <div class="data-value" id="runtime">----</div>
-                    <div class="data-unit">min</div>
-                </div>
-                <div class="data-card">
-                    <h3>Glow Plug Status</h3>
-                    <div class="data-value" id="glowPlug">----</div>
-                    <div class="data-unit">Status</div>
-                </div>
-                <div class="data-card">
-                    <h3>Battery Voltage</h3>
-                    <div class="data-value" id="voltage">----</div>
-                    <div class="data-unit">V</div>
-                </div>
-            </div>
-        </div>
-
-        <div id="exhaustTab" class="tab-content">
-            <div class="data-grid">
-                <div class="data-card">
-                    <h3>EGT Pre-Turbo</h3>
-                    <div class="data-value" id="egtPre">----</div>
-                    <div class="data-unit">°C</div>
-                </div>
-                <div class="data-card">
-                    <h3>EGT Post-Turbo</h3>
-                    <div class="data-value" id="egtPost">----</div>
-                    <div class="data-unit">°C</div>
-                </div>
-                <div class="data-card">
-                    <h3>DPF Temperature</h3>
-                    <div class="data-value" id="dpfTempEx">----</div>
-                    <div class="data-unit">°C</div>
-                </div>
-                <div class="data-card">
-                    <h3>DPF Soot Load</h3>
-                    <div class="data-value" id="dpfSootEx">----</div>
-                    <div class="data-unit">%</div>
-                </div>
-                <div class="data-card">
-                    <h3>DPF Pressure Diff</h3>
-                    <div class="data-value" id="dpfPressure">----</div>
-                    <div class="data-unit">kPa</div>
-                </div>
-                <div class="data-card">
-                    <h3>DPF Regen Status</h3>
-                    <div class="data-value" id="dpfStatus">----</div>
-                    <div class="data-unit"></div>
-                </div>
-                <div class="data-card">
-                    <h3>DPF Regen Count</h3>
-                    <div class="data-value" id="dpfCount">----</div>
-                    <div class="data-unit">cycles</div>
-                </div>
-                <div class="data-card">
-                    <h3>EGR Position</h3>
-                    <div class="data-value" id="egrPosition">----</div>
-                    <div class="data-unit">%</div>
-                </div>
-                <div class="data-card">
-                    <h3>EGR Command</h3>
-                    <div class="data-value" id="egrCommand">----</div>
-                    <div class="data-unit">%</div>
-                </div>
-                <div class="data-card">
-                    <h3>EGR Error</h3>
-                    <div class="data-value" id="egrError">----</div>
-                    <div class="data-unit">%</div>
-                </div>
-                <div class="data-card">
-                    <h3>O2 Sensor B1</h3>
-                    <div class="data-value" id="o2b1">----</div>
-                    <div class="data-unit">V</div>
-                </div>
-                <div class="data-card">
-                    <h3>O2 Sensor B2</h3>
-                    <div class="data-value" id="o2b2">----</div>
-                    <div class="data-unit">V</div>
-                </div>
-            </div>
-        </div>
-
-        <div id="fuelTab" class="tab-content">
-            <div class="data-grid">
-                <div class="data-card">
-                    <h3>Rail Pressure</h3>
-                    <div class="data-value" id="railPressure">----</div>
-                    <div class="data-unit">Bar</div>
-                </div>
-                <div class="data-card">
-                    <h3>Rail Pressure Desired</h3>
-                    <div class="data-value" id="railDesired">----</div>
-                    <div class="data-unit">Bar</div>
-                </div>
-                <div class="data-card">
-                    <h3>Injection Timing</h3>
-                    <div class="data-value" id="injTiming">----</div>
-                    <div class="data-unit">°BTDC</div>
-                </div>
-                <div class="data-card">
-                    <h3>Pilot Injection</h3>
-                    <div class="data-value" id="pilotInj">----</div>
-                    <div class="data-unit">mg</div>
-                </div>
-                <div class="data-card">
-                    <h3>Fuel Rate</h3>
-                    <div class="data-value" id="fuelRate">----</div>
-                    <div class="data-unit">L/h</div>
-                </div>
-                <div class="data-card">
-                    <h3>Fuel Trim B1</h3>
-                    <div class="data-value" id="fuelTrim">----</div>
-                    <div class="data-unit">%</div>
-                </div>
-            </div>
-            <h3 style="margin: 20px 0 10px; color: #ff4444;">Injector Balance Rates</h3>
-            <div class="data-grid">
-                <div class="data-card">
-                    <h3>Cylinder 1</h3>
-                    <div class="data-value" id="inj1">----</div>
-                    <div class="data-unit">mg/stroke</div>
-                </div>
-                <div class="data-card">
-                    <h3>Cylinder 2</h3>
-                    <div class="data-value" id="inj2">----</div>
-                    <div class="data-unit">mg/stroke</div>
-                </div>
-                <div class="data-card">
-                    <h3>Cylinder 3</h3>
-                    <div class="data-value" id="inj3">----</div>
-                    <div class="data-unit">mg/stroke</div>
-                </div>
-                <div class="data-card">
-                    <h3>Cylinder 4</h3>
-                    <div class="data-value" id="inj4">----</div>
-                    <div class="data-unit">mg/stroke</div>
-                </div>
-                <div class="data-card">
-                    <h3>Cylinder 5</h3>
-                    <div class="data-value" id="inj5">----</div>
-                    <div class="data-unit">mg/stroke</div>
-                </div>
-                <div class="data-card">
-                    <h3>Cylinder 6</h3>
-                    <div class="data-value" id="inj6">----</div>
-                    <div class="data-unit">mg/stroke</div>
-                </div>
-                <div class="data-card">
-                    <h3>Cylinder 7</h3>
-                    <div class="data-value" id="inj7">----</div>
-                    <div class="data-unit">mg/stroke</div>
-                </div>
-                <div class="data-card">
-                    <h3>Cylinder 8</h3>
-                    <div class="data-value" id="inj8">----</div>
-                    <div class="data-unit">mg/stroke</div>
-                </div>
-            </div>
-        </div>
-
-        <div id="discoveryTab" class="tab-content">
-            <div class="connection-panel">
-                <h3 style="margin-bottom: 15px;">PID Discovery Mode</h3>
-                <p style="color: #888; margin-bottom: 20px;">This will test all possible PIDs to see what your Landcruiser supports. Takes about 2-3 minutes.</p>
-                <button class="btn" id="discoveryBtn" onclick="startPIDDiscovery()">Start PID Discovery</button>
-                <button class="btn btn-secondary" id="exportBtn" onclick="exportDiscoveryResults()" style="display: none; margin-left: 10px;">Export Results</button>
-            </div>
-            <div id="discoveryProgress" style="display: none; margin-top: 20px;">
-                <div style="background: #333; border-radius: 8px; height: 30px; overflow: hidden;">
-                    <div id="progressBar" style="background: linear-gradient(90deg, #ff4444, #ff6666); height: 100%; width: 0%; transition: width 0.3s ease;"></div>
-                </div>
-                <p id="progressText" style="text-align: center; margin-top: 10px; color: #888;">Testing PIDs...</p>
-            </div>
-            <div id="discoveryResults" style="margin-top: 30px; display: none;">
-                <h3 style="color: #ff4444; margin-bottom: 20px;">Supported PIDs Found:</h3>
-                <div class="dtc-list" id="supportedPIDsList"></div>
-                <h3 style="color: #ff4444; margin: 30px 0 20px;">Summary:</h3>
-                <div class="data-grid" style="margin-bottom: 30px;">
-                    <div class="data-card">
-                        <h3>Standard OBD2</h3>
-                        <div class="data-value" id="standardCount">0</div>
-                        <div class="data-unit">PIDs supported</div>
-                    </div>
-                    <div class="data-card">
-                        <h3>Enhanced PIDs</h3>
-                        <div class="data-value" id="enhancedCount">0</div>
-                        <div class="data-unit">PIDs supported</div>
-                    </div>
-                    <div class="data-card">
-                        <h3>Toyota Specific</h3>
-                        <div class="data-value" id="toyotaCount">0</div>
-                        <div class="data-unit">PIDs supported</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="freezeTab" class="tab-content">
-            <div class="dtc-list" id="freezeFrameData">
-                <div class="empty-state">
-                    <h3>No Freeze Frame Data</h3>
-                    <p>Freeze frame data captures engine conditions when a fault occurs</p>
-                </div>
-            </div>
-        </div><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OBD2 Diagnostic Tool - Toyota Landcruiser 76</title>
+    <title>OBD2 Tool - Landcruiser 76</title>
     <style>
         * {
             margin: 0;
@@ -244,527 +12,174 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #0a0a0a;
-            color: #e0e0e0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: white;
+            padding: 20px;
         }
 
         .header {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            padding: 20px;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.5);
-            border-bottom: 2px solid #ff4444;
+            text-align: center;
+            margin-bottom: 30px;
         }
 
         .header h1 {
-            font-size: 28px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #ff4444 0%, #ff6666 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 5px;
+            color: #ff4444;
+            margin-bottom: 10px;
         }
 
-        .vehicle-info {
-            font-size: 14px;
-            color: #888;
-            font-weight: 500;
-        }
-
-        .main-container {
-            flex: 1;
+        .controls {
+            background: #2a2a2a;
             padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
         }
 
-        .connection-panel {
-            background: #1a1a1a;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 25px;
-            border: 1px solid #333;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-        }
-
-        .connection-status {
-            display: flex;
+        .status {
+            display: inline-flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
             margin-bottom: 20px;
         }
 
-        .status-indicator {
-            width: 12px;
-            height: 12px;
+        .indicator {
+            width: 15px;
+            height: 15px;
             border-radius: 50%;
+            background: red;
+        }
+
+        .indicator.connected {
+            background: #00ff00;
+        }
+
+        button {
             background: #ff4444;
-            box-shadow: 0 0 10px rgba(255,68,68,0.5);
-            transition: all 0.3s ease;
-        }
-
-        .status-indicator.connected {
-            background: #44ff44;
-            box-shadow: 0 0 10px rgba(68,255,68,0.5);
-        }
-
-        .btn {
-            background: linear-gradient(135deg, #ff4444 0%, #ff6666 100%);
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
+            padding: 15px 30px;
             font-size: 16px;
-            font-weight: 600;
+            border-radius: 5px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255,68,68,0.3);
+            margin: 5px;
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255,68,68,0.4);
+        button:hover {
+            background: #ff6666;
         }
 
-        .btn:active {
-            transform: translateY(0);
-        }
-
-        .btn:disabled {
-            background: #333;
+        button:disabled {
+            background: #666;
             cursor: not-allowed;
-            box-shadow: none;
-        }
-
-        .btn-secondary {
-            background: #333;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        .btn-secondary:hover {
-            background: #444;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-        }
-
-        .tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
-        }
-
-        .tab {
-            padding: 10px 20px;
-            background: transparent;
-            color: #888;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .tab:hover {
-            color: #ff6666;
-        }
-
-        .tab.active {
-            color: #ff4444;
-        }
-
-        .tab.active::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: #ff4444;
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .data-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
+            margin-bottom: 30px;
         }
 
         .data-card {
-            background: #1a1a1a;
-            border-radius: 12px;
+            background: #2a2a2a;
             padding: 20px;
-            border: 1px solid #333;
-            transition: all 0.3s ease;
-        }
-
-        .data-card:hover {
-            border-color: #ff4444;
-            box-shadow: 0 4px 20px rgba(255,68,68,0.2);
+            border-radius: 10px;
+            text-align: center;
         }
 
         .data-card h3 {
-            font-size: 14px;
             color: #888;
+            font-size: 14px;
             margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        .data-value {
-            font-size: 32px;
-            font-weight: 700;
+        .value {
+            font-size: 36px;
             color: #ff4444;
-            margin-bottom: 5px;
+            font-weight: bold;
         }
 
-        .data-unit {
-            font-size: 14px;
+        .unit {
             color: #666;
-        }
-
-        .dtc-list {
-            background: #1a1a1a;
-            border-radius: 12px;
-            padding: 20px;
-            border: 1px solid #333;
-        }
-
-        .dtc-item {
-            padding: 15px;
-            border-bottom: 1px solid #333;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .dtc-item:last-child {
-            border-bottom: none;
-        }
-
-        .dtc-code {
-            font-size: 18px;
-            font-weight: 600;
-            color: #ff4444;
-        }
-
-        .dtc-description {
             font-size: 14px;
-            color: #888;
-            margin-top: 5px;
         }
 
         .console {
-            background: #0a0a0a;
-            border: 1px solid #333;
-            border-radius: 8px;
-            padding: 15px;
+            background: #000;
+            border: 1px solid #444;
+            padding: 10px;
             height: 200px;
             overflow-y: auto;
-            font-family: 'Consolas', 'Monaco', monospace;
+            font-family: monospace;
             font-size: 12px;
-            margin-top: 20px;
         }
 
-        .console-line {
+        .log-line {
             margin-bottom: 5px;
-            color: #666;
         }
 
-        .console-line.sent {
+        .sent {
             color: #ff6666;
         }
 
-        .console-line.received {
+        .received {
             color: #66ff66;
-        }
-
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #333;
-            border-top-color: #ff4444;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-left: 10px;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #666;
-        }
-
-        .empty-state h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        .gauge-container {
-            position: relative;
-            width: 200px;
-            height: 200px;
-            margin: 0 auto;
-        }
-
-        .gauge {
-            width: 100%;
-            height: 100%;
-        }
-
-        .gauge-value {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 36px;
-            font-weight: 700;
-            color: #ff4444;
         }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>OBD2 Diagnostic Tool</h1>
-        <div class="vehicle-info">2011 Toyota Landcruiser 76 Series Wagon V8 Turbo Diesel (1VD-FTV) - Trav's Vehicle</div>
+        <p>2011 Toyota Landcruiser 76 Series V8 Turbo Diesel</p>
     </div>
 
-    <div class="main-container">
-        <div class="connection-panel">
-            <div class="connection-status">
-                <div class="status-indicator" id="statusIndicator"></div>
-                <span id="connectionStatus">Disconnected</span>
-            </div>
-            <div style="display: flex; gap: 10px;">
-                <button class="btn" id="connectBtn" onclick="toggleConnection()">Connect to OBD2</button>
-                <button class="btn btn-secondary" id="clearBtn" onclick="clearDTCs()" disabled>Clear DTCs</button>
-                <select id="connectionType" style="background: #333; color: white; border: 1px solid #666; padding: 10px; border-radius: 8px; margin-left: 10px;">
-                    <option value="usb">USB ELM327</option>
-                    <option value="bluetooth">Bluetooth ELM327</option>
-                    <option value="wifi">WiFi ELM327</option>
-                </select>
-            </div>
+    <div class="controls">
+        <div class="status">
+            <div class="indicator" id="indicator"></div>
+            <span id="status">Disconnected</span>
         </div>
-
-        <div class="tabs">
-            <button class="tab active" onclick="switchTab('live')">Live Data</button>
-            <button class="tab" onclick="switchTab('engine')">Engine Details</button>
-            <button class="tab" onclick="switchTab('exhaust')">Exhaust System</button>
-            <button class="tab" onclick="switchTab('fuel')">Fuel System</button>
-            <button class="tab" onclick="switchTab('dtc')">Trouble Codes</button>
-            <button class="tab" onclick="switchTab('freeze')">Freeze Frame</button>
-            <button class="tab" onclick="switchTab('discovery')">PID Discovery</button>
-            <button class="tab" onclick="switchTab('info')">Vehicle Info</button>
-            <button class="tab" onclick="switchTab('console')">Console</button>
-        </div>
-
-        <div id="liveTab" class="tab-content active">
-            <div class="data-grid">
-                <div class="data-card">
-                    <h3>Engine RPM</h3>
-                    <div class="data-value" id="rpm">----</div>
-                    <div class="data-unit">RPM</div>
-                </div>
-                <div class="data-card">
-                    <h3>Vehicle Speed</h3>
-                    <div class="data-value" id="speed">----</div>
-                    <div class="data-unit">km/h</div>
-                </div>
-                <div class="data-card">
-                    <h3>Coolant Temperature</h3>
-                    <div class="data-value" id="coolant">----</div>
-                    <div class="data-unit">°C</div>
-                </div>
-                <div class="data-card">
-                    <h3>Intake Air Temperature</h3>
-                    <div class="data-value" id="intake">----</div>
-                    <div class="data-unit">°C</div>
-                </div>
-                <div class="data-card">
-                    <h3>Fuel Level</h3>
-                    <div class="data-value" id="fuel">----</div>
-                    <div class="data-unit">%</div>
-                </div>
-                <div class="data-card">
-                    <h3>Turbo Boost</h3>
-                    <div class="data-value" id="boost">----</div>
-                    <div class="data-unit">PSI</div>
-                </div>
-                <div class="data-card">
-                    <h3>EGT Bank 1</h3>
-                    <div class="data-value" id="egt1">----</div>
-                    <div class="data-unit">°C</div>
-                </div>
-                <div class="data-card">
-                    <h3>EGT Bank 2</h3>
-                    <div class="data-value" id="egt2">----</div>
-                    <div class="data-unit">°C</div>
-                </div>
-                <div class="data-card">
-                    <h3>DPF Temperature</h3>
-                    <div class="data-value" id="dpfTemp">----</div>
-                    <div class="data-unit">°C</div>
-                </div>
-                <div class="data-card">
-                    <h3>DPF Soot Load</h3>
-                    <div class="data-value" id="dpfSoot">----</div>
-                    <div class="data-unit">%</div>
-                </div>
-                <div class="data-card">
-                    <h3>Exhaust Pressure</h3>
-                    <div class="data-value" id="exhaustPressure">----</div>
-                    <div class="data-unit">kPa</div>
-                </div>
-                <div class="data-card">
-                    <h3>Engine Oil Temp</h3>
-                    <div class="data-value" id="oilTemp">----</div>
-                    <div class="data-unit">°C</div>
-                </div>
-            </div>
-        </div>
-
-        <div id="dtcTab" class="tab-content">
-            <div class="dtc-list" id="dtcList">
-                <div class="empty-state">
-                    <h3>No Trouble Codes Found</h3>
-                    <p>Connect to your vehicle to scan for diagnostic trouble codes</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="infoTab" class="tab-content">
-            <div class="dtc-list">
-                <div class="dtc-item">
-                    <div>
-                        <div class="dtc-code">VIN</div>
-                        <div class="dtc-description" id="vin">Not Available</div>
-                    </div>
-                </div>
-                <div class="dtc-item">
-                    <div>
-                        <div class="dtc-code">Protocol</div>
-                        <div class="dtc-description" id="protocol">Not Connected</div>
-                    </div>
-                </div>
-                <div class="dtc-item">
-                    <div>
-                        <div class="dtc-code">Fuel Type</div>
-                        <div class="dtc-description" id="fuelType">Diesel</div>
-                    </div>
-                </div>
-                <div class="dtc-item">
-                    <div>
-                        <div class="dtc-code">OBD Standard</div>
-                        <div class="dtc-description" id="obdStandard">Not Available</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="consoleTab" class="tab-content">
-            <div class="console" id="console"></div>
+        <div>
+            <button id="connectBtn" onclick="toggleConnection()">Connect USB OBD2</button>
+            <button id="clearBtn" onclick="clearCodes()" disabled>Clear Codes</button>
         </div>
     </div>
+
+    <div class="data-grid">
+        <div class="data-card">
+            <h3>ENGINE RPM</h3>
+            <div class="value" id="rpm">----</div>
+            <div class="unit">RPM</div>
+        </div>
+        <div class="data-card">
+            <h3>VEHICLE SPEED</h3>
+            <div class="value" id="speed">----</div>
+            <div class="unit">km/h</div>
+        </div>
+        <div class="data-card">
+            <h3>COOLANT TEMP</h3>
+            <div class="value" id="coolant">----</div>
+            <div class="unit">°C</div>
+        </div>
+        <div class="data-card">
+            <h3>TURBO BOOST</h3>
+            <div class="value" id="boost">----</div>
+            <div class="unit">PSI</div>
+        </div>
+    </div>
+
+    <div class="console" id="console"></div>
 
     <script>
         let port = null;
         let reader = null;
         let writer = null;
         let connected = false;
-        let liveDataInterval = null;
-
-        // OBD2 PID definitions
-        const PIDS = {
-            // Standard PIDs
-            '010C': { name: 'Engine RPM', calc: (a, b) => ((a * 256 + b) / 4) },
-            '010D': { name: 'Vehicle Speed', calc: (a) => a },
-            '0105': { name: 'Coolant Temperature', calc: (a) => a - 40 },
-            '010F': { name: 'Intake Air Temperature', calc: (a) => a - 40 },
-            '012F': { name: 'Fuel Level', calc: (a) => (a * 100 / 255) },
-            '0111': { name: 'Turbo Boost', calc: (a) => ((a - 128) * 0.145) }, // Convert to PSI
-            '0104': { name: 'Engine Load', calc: (a) => (a * 100 / 255) },
-            '0106': { name: 'Fuel Trim ST B1', calc: (a) => ((a - 128) * 100 / 128) },
-            '0107': { name: 'Fuel Trim LT B1', calc: (a) => ((a - 128) * 100 / 128) },
-            '010B': { name: 'Intake Manifold Pressure', calc: (a) => a },
-            '0110': { name: 'MAF Air Flow', calc: (a, b) => ((a * 256 + b) / 100) },
-            '011F': { name: 'Runtime Since Start', calc: (a, b) => (a * 256 + b) },
-            '0121': { name: 'Distance with MIL', calc: (a, b) => (a * 256 + b) },
-            '0123': { name: 'Fuel Rail Pressure', calc: (a, b) => ((a * 256 + b) * 10) },
-            '012C': { name: 'Commanded EGR', calc: (a) => (a * 100 / 255) },
-            '012D': { name: 'EGR Error', calc: (a) => ((a - 128) * 100 / 128) },
-            '012E': { name: 'Commanded Evap Purge', calc: (a) => (a * 100 / 255) },
-            '0130': { name: 'Warm-ups Since Clear', calc: (a) => a },
-            '0131': { name: 'Distance Since Clear', calc: (a, b) => (a * 256 + b) },
-            
-            // Exhaust Gas Temperature PIDs
-            '0178': { name: 'EGT Bank 1 Sensor 1', calc: (a, b) => ((a * 256 + b) / 10 - 40) },
-            '0179': { name: 'EGT Bank 1 Sensor 2', calc: (a, b) => ((a * 256 + b) / 10 - 40) },
-            '017A': { name: 'EGT Bank 2 Sensor 1', calc: (a, b) => ((a * 256 + b) / 10 - 40) },
-            '017B': { name: 'EGT Bank 2 Sensor 2', calc: (a, b) => ((a * 256 + b) / 10 - 40) },
-            
-            // Additional Sensor PIDs
-            '0133': { name: 'O2 Sensor Bank 1', calc: (a) => (a * 0.005) },
-            '0134': { name: 'O2 Sensor Bank 2', calc: (a) => (a * 0.005) },
-            '015C': { name: 'Engine Oil Temperature', calc: (a) => a - 40 },
-            '0142': { name: 'Control Module Voltage', calc: (a, b) => ((a * 256 + b) / 1000) },
-            '015E': { name: 'Fuel Rate', calc: (a, b) => ((a * 256 + b) * 0.05) },
-            '0173': { name: 'Exhaust Pressure', calc: (a, b) => ((a * 256 + b) / 10) },
-            '0159': { name: 'Fuel Rail Pressure (absolute)', calc: (a, b) => ((a * 256 + b) * 10) },
-            '015D': { name: 'Fuel Injection Timing', calc: (a, b) => ((a * 256 + b) / 128 - 210) },
-            '0162': { name: 'Actual Fuel Rail Pressure', calc: (a, b) => ((a * 256 + b) * 10) },
-            
-            // Toyota Enhanced PIDs (Mode 21/22)
-            '22042C': { name: 'DPF Temperature', calc: (a, b) => ((a * 256 + b) - 273) },
-            '22042D': { name: 'DPF Pressure Differential', calc: (a, b) => ((a * 256 + b) * 0.1) },
-            '22042E': { name: 'DPF Soot Load', calc: (a) => (a * 100 / 255) },
-            '220430': { name: 'Turbo VGT Position', calc: (a) => (a * 100 / 255) },
-            '220431': { name: 'Turbo Boost Desired', calc: (a, b) => ((a * 256 + b) * 0.01) },
-            '220432': { name: 'EGR Valve Position', calc: (a) => (a * 100 / 255) },
-            '220435': { name: 'Glow Plug Status', calc: (a) => a },
-            '220436': { name: 'Fuel Rail Desired Pressure', calc: (a, b) => ((a * 256 + b) * 10) },
-            '220440': { name: 'Injector 1 Balance', calc: (a) => (a - 128) },
-            '220441': { name: 'Injector 2 Balance', calc: (a) => (a - 128) },
-            '220442': { name: 'Injector 3 Balance', calc: (a) => (a - 128) },
-            '220443': { name: 'Injector 4 Balance', calc: (a) => (a - 128) },
-            '220444': { name: 'Injector 5 Balance', calc: (a) => (a - 128) },
-            '220445': { name: 'Injector 6 Balance', calc: (a) => (a - 128) },
-            '220446': { name: 'Injector 7 Balance', calc: (a) => (a - 128) },
-            '220447': { name: 'Injector 8 Balance', calc: (a) => (a - 128) },
-            '220450': { name: 'DPF Regeneration Status', calc: (a) => a },
-            '220451': { name: 'DPF Regen Count', calc: (a, b) => (a * 256 + b) },
-            '220455': { name: 'Turbo Speed', calc: (a, b) => ((a * 256 + b) * 100) },
-            '220460': { name: 'Pilot Injection Quantity', calc: (a) => (a * 0.1) },
-            '220465': { name: 'Main Injection Timing', calc: (a) => (a * 0.375 - 24) },
-            '220470': { name: 'Common Rail Pressure Sensor', calc: (a, b) => ((a * 256 + b) * 10) }
-        };
 
         function log(message, type = 'info') {
             const console = document.getElementById('console');
             const line = document.createElement('div');
-            line.className = `console-line ${type}`;
+            line.className = `log-line ${type}`;
             line.textContent = `${new Date().toLocaleTimeString()} - ${message}`;
             console.appendChild(line);
             console.scrollTop = console.scrollHeight;
@@ -780,524 +195,166 @@
 
         async function connect() {
             try {
-                // Request a port and open it
+                // Request port
                 port = await navigator.serial.requestPort();
                 await port.open({ baudRate: 38400 });
 
+                // Setup streams
                 const textEncoder = new TextEncoderStream();
-                const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
+                textEncoder.readable.pipeTo(port.writable);
                 writer = textEncoder.writable.getWriter();
 
                 const textDecoder = new TextDecoderStream();
-                const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
+                port.readable.pipeTo(textDecoder.writable);
                 reader = textDecoder.readable.getReader();
 
                 connected = true;
-                updateConnectionStatus(true);
-                log('Connected to OBD2 adapter', 'sent');
+                updateUI(true);
+                log('Connected to OBD2', 'sent');
 
-                // Initialize ELM327
-                await initializeAdapter();
-
-                // Start reading data
-                startLiveData();
+                // Initialize
+                await initOBD();
+                
+                // Start monitoring
+                startMonitoring();
 
             } catch (error) {
-                log(`Connection error: ${error.message}`, 'received');
-                updateConnectionStatus(false);
+                log(`Error: ${error.message}`, 'received');
+                updateUI(false);
             }
         }
 
         function disconnect() {
-            if (liveDataInterval) {
-                clearInterval(liveDataInterval);
-                liveDataInterval = null;
-            }
-
-            if (reader) {
-                reader.cancel();
-                reader = null;
-            }
-
-            if (writer) {
-                writer.close();
-                writer = null;
-            }
-
-            if (port) {
-                port.close();
-                port = null;
-            }
-
+            if (reader) reader.cancel();
+            if (writer) writer.close();
+            if (port) port.close();
+            
             connected = false;
-            updateConnectionStatus(false);
-            log('Disconnected from OBD2 adapter', 'received');
+            updateUI(false);
+            log('Disconnected', 'received');
         }
 
-        async function initializeAdapter() {
-            log('Starting full ELM327 handshake sequence...', 'sent');
-            
-            // Step 1: Full reset
+        async function initOBD() {
+            // Reset
             await sendCommand('ATZ');
             await sleep(2000);
             
-            // Step 2: Turn echo off
+            // Echo off
             await sendCommand('ATE0');
             await sleep(100);
             
-            // Step 3: Turn linefeeds off
-            await sendCommand('ATL0');
-            await sleep(100);
-            
-            // Step 4: Set headers on to see full data
-            await sendCommand('ATH1');
-            await sleep(100);
-            
-            // Step 5: Set protocol to automatic
+            // Auto protocol
             await sendCommand('ATSP0');
             await sleep(100);
             
-            // Step 6: Allow long messages (for DPF data)
-            await sendCommand('ATAL');
-            await sleep(100);
-            
-            // Step 7: Set adaptive timing
-            await sendCommand('ATAT1');
-            await sleep(100);
-            
-            // Step 8: Test connection with simple command
-            const testResponse = await sendCommand('0100');
-            if (!testResponse || testResponse.includes('NO DATA')) {
-                throw new Error('Vehicle not responding to OBD2 queries');
-            }
-            
-            // Step 9: Get protocol info
-            const protocol = await sendCommand('ATDP');
-            document.getElementById('protocol').textContent = protocol;
-            log(`Protocol detected: ${protocol}`, 'received');
-            
-            // Step 10: Set up for faster communication
-            await sendCommand('ATST19'); // Set timeout to 100ms (19 hex = 25 * 4ms)
-            await sleep(100);
-            
-            // Step 11: Try to get VIN
-            await sendCommand('0902');
-            const vinResponse = await readResponse();
-            if (vinResponse && vinResponse.length > 10) {
-                document.getElementById('vin').textContent = parseVIN(vinResponse);
-            }
-            
-            // Step 12: Get supported PIDs
-            const supportedPIDs = await sendCommand('0100');
-            log(`Supported PIDs: ${supportedPIDs}`, 'received');
-            window.supportedPIDs = parseSupportedPIDs(supportedPIDs);
-            
-            // Step 13: Check for enhanced Toyota PIDs
-            const toyotaCheck = await sendCommand('2100');
-            if (toyotaCheck && !toyotaCheck.includes('NO DATA')) {
-                log('Toyota enhanced diagnostics available', 'received');
-                window.toyotaEnhanced = true;
-            }
-            
-            // Step 14: Get ECU names
-            const ecuNames = await sendCommand('0900');
-            if (ecuNames && !ecuNames.includes('NO DATA')) {
-                log(`ECU Info: ${ecuNames}`, 'received');
-            }
-            
-            // Step 15: Check freeze frame availability
-            const freezeCheck = await sendCommand('0200');
-            if (freezeCheck && !freezeCheck.includes('NO DATA')) {
-                window.freezeFrameAvailable = true;
-            }
-            
-            log('Handshake complete! Ready for diagnostics.', 'received');
+            log('Initialization complete', 'received');
         }
 
-        async function sendCommand(command) {
+        async function sendCommand(cmd) {
             if (!writer) return null;
-
-            try {
-                log(`> ${command}`, 'sent');
-                await writer.write(command + '\r');
-                
-                // Read response
-                const response = await readResponse();
-                log(`< ${response}`, 'received');
-                
-                return response;
-            } catch (error) {
-                log(`Error: ${error.message}`, 'received');
-                return null;
-            }
+            
+            log(`> ${cmd}`, 'sent');
+            await writer.write(cmd + '\r');
+            
+            const response = await readResponse();
+            log(`< ${response}`, 'received');
+            
+            return response;
         }
 
         async function readResponse() {
             let response = '';
-            let timeout = setTimeout(() => {}, 1000);
-
-            try {
-                while (true) {
-                    const { value, done } = await reader.read();
-                    if (done) break;
-                    
-                    response += value;
-                    
-                    if (response.includes('>')) {
-                        clearTimeout(timeout);
-                        return response.replace('>', '').trim();
-                    }
-                }
-            } catch (error) {
-                clearTimeout(timeout);
-                throw error;
-            }
-        }
-
-        async function startLiveData() {
-            // Scan for trouble codes first
-            await scanDTCs();
             
-            // Check for freeze frame data
-            if (window.freezeFrameAvailable) {
-                await readFreezeFrame();
-            }
-
-            // Create separate intervals for different data groups to avoid overloading
-            
-            // Fast update group (every 500ms) - critical live data
-            setInterval(async () => {
-                if (!connected) return;
+            while (true) {
+                const { value, done } = await reader.read();
+                if (done) break;
                 
-                const rpm = await readPID('010C');
-                if (rpm !== null) document.getElementById('rpm').textContent = Math.round(rpm);
+                response += value;
                 
-                const boost = await readPID('0111');
-                if (boost !== null) document.getElementById('boost').textContent = boost.toFixed(1);
-            }, 500);
+                if (response.includes('>')) {
+                    return response.replace('>', '').trim();
+                }
+            }
+        }
 
-            // Medium update group (every 1.5s) - standard parameters
+        async function startMonitoring() {
             setInterval(async () => {
                 if (!connected) return;
 
-                const speed = await readPID('010D');
-                if (speed !== null) document.getElementById('speed').textContent = Math.round(speed);
-
-                const coolant = await readPID('0105');
-                if (coolant !== null) document.getElementById('coolant').textContent = Math.round(coolant);
-
-                const intake = await readPID('010F');
-                if (intake !== null) document.getElementById('intake').textContent = Math.round(intake);
-
-                const fuel = await readPID('012F');
-                if (fuel !== null) document.getElementById('fuel').textContent = Math.round(fuel);
-
-                const engineLoad = await readPID('0104');
-                if (engineLoad !== null) document.getElementById('engineLoad').textContent = Math.round(engineLoad);
-
-                const voltage = await readPID('0142');
-                if (voltage !== null) document.getElementById('voltage').textContent = voltage.toFixed(1);
-            }, 1500);
-
-            // Slow update group (every 3s) - exhaust and extended data
-            setInterval(async () => {
-                if (!connected) return;
-
-                // Exhaust temperatures
-                const egt1 = await readPID('0178');
-                if (egt1 !== null) {
-                    document.getElementById('egt1').textContent = Math.round(egt1);
-                    document.getElementById('egtPre').textContent = Math.round(egt1);
+                // Read RPM
+                const rpmData = await sendCommand('010C');
+                if (rpmData && !rpmData.includes('NO DATA')) {
+                    const rpm = parseRPM(rpmData);
+                    document.getElementById('rpm').textContent = rpm;
                 }
 
-                const egt2 = await readPID('017A');
-                if (egt2 !== null) {
-                    document.getElementById('egt2').textContent = Math.round(egt2);
-                    document.getElementById('egtPost').textContent = Math.round(egt2);
+                // Read Speed
+                const speedData = await sendCommand('010D');
+                if (speedData && !speedData.includes('NO DATA')) {
+                    const speed = parseSpeed(speedData);
+                    document.getElementById('speed').textContent = speed;
                 }
 
-                const oilTemp = await readPID('015C');
-                if (oilTemp !== null) document.getElementById('oilTemp').textContent = Math.round(oilTemp);
+                // Read Coolant
+                const coolantData = await sendCommand('0105');
+                if (coolantData && !coolantData.includes('NO DATA')) {
+                    const coolant = parseCoolant(coolantData);
+                    document.getElementById('coolant').textContent = coolant;
+                }
 
-                const exhaustPressure = await readPID('0173');
-                if (exhaustPressure !== null) document.getElementById('exhaustPressure').textContent = exhaustPressure.toFixed(1);
+                // Read Boost
+                const boostData = await sendCommand('0111');
+                if (boostData && !boostData.includes('NO DATA')) {
+                    const boost = parseBoost(boostData);
+                    document.getElementById('boost').textContent = boost;
+                }
+            }, 1000);
+        }
 
-                // Fuel system
-                const railPressure = await readPID('0123');
-                if (railPressure !== null) document.getElementById('railPressure').textContent = (railPressure / 1000).toFixed(1);
-
-                const fuelRate = await readPID('015E');
-                if (fuelRate !== null) document.getElementById('fuelRate').textContent = fuelRate.toFixed(1);
-
-                const fuelTrim = await readPID('0106');
-                if (fuelTrim !== null) document.getElementById('fuelTrim').textContent = fuelTrim.toFixed(1);
-
-                // EGR system
-                const egrCommand = await readPID('012C');
-                if (egrCommand !== null) document.getElementById('egrCommand').textContent = Math.round(egrCommand);
-
-                const egrError = await readPID('012D');
-                if (egrError !== null) document.getElementById('egrError').textContent = egrError.toFixed(1);
-
-                // Engine data
-                const maf = await readPID('0110');
-                if (maf !== null) document.getElementById('maf').textContent = maf.toFixed(1);
-
-                const runtime = await readPID('011F');
-                if (runtime !== null) document.getElementById('runtime').textContent = Math.round(runtime / 60);
-
-                // O2 sensors
-                const o2b1 = await readPID('0133');
-                if (o2b1 !== null) document.getElementById('o2b1').textContent = o2b1.toFixed(3);
-
-                const o2b2 = await readPID('0134');
-                if (o2b2 !== null) document.getElementById('o2b2').textContent = o2b2.toFixed(3);
-            }, 3000);
-
-            // Toyota enhanced data (every 5s) - if available
-            if (window.toyotaEnhanced) {
-                setInterval(async () => {
-                    if (!connected) return;
-
-                    // DPF data
-                    const dpfTemp = await readPID('22042C');
-                    if (dpfTemp !== null) {
-                        document.getElementById('dpfTemp').textContent = Math.round(dpfTemp);
-                        document.getElementById('dpfTempEx').textContent = Math.round(dpfTemp);
-                    }
-
-                    const dpfSoot = await readPID('22042E');
-                    if (dpfSoot !== null) {
-                        document.getElementById('dpfSoot').textContent = Math.round(dpfSoot);
-                        document.getElementById('dpfSootEx').textContent = Math.round(dpfSoot);
-                    }
-
-                    const dpfPressure = await readPID('22042D');
-                    if (dpfPressure !== null) document.getElementById('dpfPressure').textContent = dpfPressure.toFixed(1);
-
-                    const dpfStatus = await readPID('220450');
-                    if (dpfStatus !== null) document.getElementById('dpfStatus').textContent = getDPFStatus(dpfStatus);
-
-                    const dpfCount = await readPID('220451');
-                    if (dpfCount !== null) document.getElementById('dpfCount').textContent = dpfCount;
-
-                    // Turbo data
-                    const vgtPosition = await readPID('220430');
-                    if (vgtPosition !== null) document.getElementById('vgtPosition').textContent = Math.round(vgtPosition);
-
-                    const turboSpeed = await readPID('220455');
-                    if (turboSpeed !== null) document.getElementById('turboSpeed').textContent = Math.round(turboSpeed);
-
-                    const boostDesired = await readPID('220431');
-                    if (boostDesired !== null) document.getElementById('boostDesired').textContent = boostDesired.toFixed(2);
-
-                    // EGR position
-                    const egrPosition = await readPID('220432');
-                    if (egrPosition !== null) document.getElementById('egrPosition').textContent = Math.round(egrPosition);
-
-                    // Fuel system
-                    const railDesired = await readPID('220436');
-                    if (railDesired !== null) document.getElementById('railDesired').textContent = (railDesired / 1000).toFixed(1);
-
-                    const injTiming = await readPID('220465');
-                    if (injTiming !== null) document.getElementById('injTiming').textContent = injTiming.toFixed(1);
-
-                    const pilotInj = await readPID('220460');
-                    if (pilotInj !== null) document.getElementById('pilotInj').textContent = pilotInj.toFixed(1);
-
-                    // Glow plug status
-                    const glowPlug = await readPID('220435');
-                    if (glowPlug !== null) document.getElementById('glowPlug').textContent = getGlowPlugStatus(glowPlug);
-
-                    // Injector balance rates
-                    for (let i = 1; i <= 8; i++) {
-                        const injBalance = await readPID(`22044${i - 1}`);
-                        if (injBalance !== null) document.getElementById(`inj${i}`).textContent = injBalance.toFixed(1);
-                    }
-                }, 5000);
+        function parseRPM(data) {
+            const bytes = data.match(/[0-9A-F]{2}/g);
+            if (bytes && bytes.length >= 4) {
+                const a = parseInt(bytes[2], 16);
+                const b = parseInt(bytes[3], 16);
+                return Math.round((a * 256 + b) / 4);
             }
+            return '----';
         }
 
-        async function readPID(pid) {
-            const response = await sendCommand(pid);
-            if (!response || response.includes('NO DATA')) return null;
-
-            // Parse hex response
-            const bytes = response.match(/[0-9A-F]{2}/g);
-            if (!bytes || bytes.length < 3) return null;
-
-            const pidInfo = PIDS[pid];
-            if (!pidInfo) return null;
-
-            // Convert hex to decimal and apply calculation
-            const values = bytes.slice(2).map(b => parseInt(b, 16));
-            return pidInfo.calc(...values);
-        }
-
-        async function scanDTCs() {
-            const response = await sendCommand('03');
-            if (!response || response.includes('NO DATA')) {
-                updateDTCList([]);
-                return;
+        function parseSpeed(data) {
+            const bytes = data.match(/[0-9A-F]{2}/g);
+            if (bytes && bytes.length >= 3) {
+                return parseInt(bytes[2], 16);
             }
-
-            // Parse DTC codes
-            const codes = parseDTCResponse(response);
-            updateDTCList(codes);
+            return '----';
         }
 
-        function parseDTCResponse(response) {
-            // This is a simplified DTC parser
-            const codes = [];
-            const matches = response.match(/43\s+([0-9A-F]{2}\s+[0-9A-F]{2})/g);
-            
-            if (matches) {
-                matches.forEach(match => {
-                    const bytes = match.split(/\s+/).slice(1);
-                    const code = decodeDTC(bytes[0], bytes[1]);
-                    if (code) codes.push(code);
-                });
+        function parseCoolant(data) {
+            const bytes = data.match(/[0-9A-F]{2}/g);
+            if (bytes && bytes.length >= 3) {
+                return parseInt(bytes[2], 16) - 40;
             }
-            
-            return codes;
+            return '----';
         }
 
-        function decodeDTC(byte1, byte2) {
-            const prefixes = ['P', 'C', 'B', 'U'];
-            const prefix = prefixes[(parseInt(byte1, 16) >> 6) & 0x03];
-            const code = prefix + ((parseInt(byte1, 16) & 0x3F) << 8 | parseInt(byte2, 16)).toString(16).padStart(4, '0').toUpperCase();
-            
-            return {
-                code: code,
-                description: getDTCDescription(code)
-            };
-        }
-
-        function getDTCDescription(code) {
-            // Common Toyota DTCs
-            const descriptions = {
-                'P0171': 'System Too Lean (Bank 1)',
-                'P0174': 'System Too Lean (Bank 2)',
-                'P0300': 'Random/Multiple Cylinder Misfire',
-                'P0420': 'Catalyst System Efficiency Below Threshold',
-                'P0442': 'EVAP System Leak Detected (Small)',
-                'P0456': 'EVAP System Leak Detected (Very Small)',
-                'P0128': 'Coolant Temperature Below Thermostat Regulating Temperature',
-                'P0299': 'Turbocharger Underboost',
-                'P0234': 'Turbocharger Overboost',
-                'P0401': 'EGR Flow Insufficient',
-                'P0045': 'Turbo/Supercharger Boost Control Solenoid Circuit',
-                'P0087': 'Fuel Rail/System Pressure Too Low',
-                'P0088': 'Fuel Rail/System Pressure Too High',
-                'P0089': 'Fuel Pressure Regulator Performance',
-                'P0093': 'Large Fuel Leak Detected',
-                'P0094': 'Small Fuel Leak Detected',
-                'P0190': 'Fuel Rail Pressure Sensor Circuit',
-                'P0191': 'Fuel Rail Pressure Sensor Circuit Range/Performance',
-                'P0201': 'Injector Circuit - Cylinder 1',
-                'P0202': 'Injector Circuit - Cylinder 2',
-                'P0203': 'Injector Circuit - Cylinder 3',
-                'P0204': 'Injector Circuit - Cylinder 4',
-                'P0205': 'Injector Circuit - Cylinder 5',
-                'P0206': 'Injector Circuit - Cylinder 6',
-                'P0207': 'Injector Circuit - Cylinder 7',
-                'P0208': 'Injector Circuit - Cylinder 8',
-                'P0380': 'Glow Plug Circuit A',
-                'P0381': 'Glow Plug Indicator Circuit',
-                'P0382': 'Glow Plug Circuit B',
-                'P0400': 'EGR Flow',
-                'P0402': 'EGR Flow Excessive',
-                'P0403': 'EGR Circuit',
-                'P0404': 'EGR Circuit Range/Performance',
-                'P0405': 'EGR Sensor A Circuit Low',
-                'P0406': 'EGR Sensor A Circuit High',
-                'P0470': 'Exhaust Pressure Sensor',
-                'P0471': 'Exhaust Pressure Sensor Range/Performance',
-                'P0472': 'Exhaust Pressure Sensor Low',
-                'P0473': 'Exhaust Pressure Sensor High',
-                'P0474': 'Exhaust Pressure Sensor Intermittent',
-                'P0475': 'Exhaust Pressure Control Valve',
-                'P0476': 'Exhaust Pressure Control Valve Range/Performance',
-                'P0477': 'Exhaust Pressure Control Valve Low',
-                'P0478': 'Exhaust Pressure Control Valve High',
-                'P0500': 'Vehicle Speed Sensor',
-                'P0540': 'Intake Air Heater Circuit',
-                'P0541': 'Intake Air Heater Circuit Low',
-                'P0542': 'Intake Air Heater Circuit High',
-                'P0670': 'Glow Plug Module Control Circuit',
-                'P0671': 'Cylinder 1 Glow Plug Circuit',
-                'P0672': 'Cylinder 2 Glow Plug Circuit',
-                'P0673': 'Cylinder 3 Glow Plug Circuit',
-                'P0674': 'Cylinder 4 Glow Plug Circuit',
-                'P0675': 'Cylinder 5 Glow Plug Circuit',
-                'P0676': 'Cylinder 6 Glow Plug Circuit',
-                'P0677': 'Cylinder 7 Glow Plug Circuit',
-                'P0678': 'Cylinder 8 Glow Plug Circuit',
-                'P1250': 'Turbo Boost Pressure Low',
-                'P1251': 'Turbo Boost Pressure Not Detected',
-                'P2002': 'DPF Efficiency Below Threshold Bank 1',
-                'P2003': 'DPF Efficiency Below Threshold Bank 2',
-                'P2032': 'Exhaust Gas Temperature Sensor Circuit Low Bank 1 Sensor 2',
-                'P2033': 'Exhaust Gas Temperature Sensor Circuit High Bank 1 Sensor 2',
-                'P2080': 'Exhaust Gas Temperature Sensor Circuit Range/Performance Bank 1 Sensor 1',
-                'P2084': 'Exhaust Gas Temperature Sensor Circuit Range/Performance Bank 2 Sensor 1',
-                'P2226': 'Barometric Pressure Circuit',
-                'P2263': 'Turbo/Supercharger Boost System Performance',
-                'P2452': 'DPF Pressure Sensor A Circuit',
-                'P2453': 'DPF Pressure Sensor A Circuit Range/Performance',
-                'P2454': 'DPF Pressure Sensor A Circuit Low',
-                'P2455': 'DPF Pressure Sensor A Circuit High',
-                'P2458': 'DPF Regeneration Duration',
-                'P2459': 'DPF Regeneration Frequency',
-                'P2463': 'DPF Soot Accumulation',
-                'P244A': 'DPF Differential Pressure Too Low',
-                'P244B': 'DPF Differential Pressure Too High'
-            };
-            
-            return descriptions[code] || 'Unknown Error Code';
-        }
-
-        async function clearDTCs() {
-            if (!connected) return;
-            
-            const response = await sendCommand('04');
-            log('Clearing trouble codes...', 'sent');
-            
-            // Rescan after clearing
-            setTimeout(() => scanDTCs(), 2000);
-        }
-
-        function updateDTCList(codes) {
-            const dtcList = document.getElementById('dtcList');
-            
-            if (codes.length === 0) {
-                dtcList.innerHTML = `
-                    <div class="empty-state">
-                        <h3>No Trouble Codes Found</h3>
-                        <p>Your vehicle is running without any detected issues</p>
-                    </div>
-                `;
-            } else {
-                dtcList.innerHTML = codes.map(dtc => `
-                    <div class="dtc-item">
-                        <div>
-                            <div class="dtc-code">${dtc.code}</div>
-                            <div class="dtc-description">${dtc.description}</div>
-                        </div>
-                    </div>
-                `).join('');
+        function parseBoost(data) {
+            const bytes = data.match(/[0-9A-F]{2}/g);
+            if (bytes && bytes.length >= 3) {
+                const kpa = parseInt(bytes[2], 16);
+                const psi = ((kpa - 128) * 0.145).toFixed(1);
+                return psi;
             }
+            return '----';
         }
 
-        function parseVIN(response) {
-            // VIN parsing logic would go here
-            // This is a simplified version
-            return response.replace(/[^A-Z0-9]/g, '').slice(0, 17);
+        async function clearCodes() {
+            await sendCommand('04');
+            log('Trouble codes cleared', 'sent');
         }
 
-        function updateConnectionStatus(isConnected) {
-            const indicator = document.getElementById('statusIndicator');
-            const status = document.getElementById('connectionStatus');
+        function updateUI(isConnected) {
+            const indicator = document.getElementById('indicator');
+            const status = document.getElementById('status');
             const connectBtn = document.getElementById('connectBtn');
             const clearBtn = document.getElementById('clearBtn');
 
@@ -1309,159 +366,23 @@
             } else {
                 indicator.classList.remove('connected');
                 status.textContent = 'Disconnected';
-                connectBtn.textContent = 'Connect to OBD2';
+                connectBtn.textContent = 'Connect USB OBD2';
                 clearBtn.disabled = true;
                 
-                // Reset all values
-                const elementsToReset = [
-                    'rpm', 'speed', 'coolant', 'intake', 'fuel', 'boost', 
-                    'egt1', 'egt2', 'dpfTemp', 'dpfSoot', 'exhaustPressure', 'oilTemp',
-                    'engineLoad', 'maf', 'vgtPosition', 'turboSpeed', 'boostDesired',
-                    'runtime', 'glowPlug', 'voltage', 'egtPre', 'egtPost', 'dpfTempEx',
-                    'dpfSootEx', 'dpfPressure', 'dpfStatus', 'dpfCount', 'egrPosition',
-                    'egrCommand', 'egrError', 'o2b1', 'o2b2', 'railPressure', 'railDesired',
-                    'injTiming', 'pilotInj', 'fuelRate', 'fuelTrim',
-                    'inj1', 'inj2', 'inj3', 'inj4', 'inj5', 'inj6', 'inj7', 'inj8'
-                ];
-                
-                elementsToReset.forEach(id => {
-                    const element = document.getElementById(id);
-                    if (element) element.textContent = '----';
+                // Reset values
+                ['rpm', 'speed', 'coolant', 'boost'].forEach(id => {
+                    document.getElementById(id).textContent = '----';
                 });
             }
-        }
-
-        function switchTab(tabName) {
-            // Update tabs
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            event.target.classList.add('active');
-
-            // Update content
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            document.getElementById(`${tabName}Tab`).classList.add('active');
         }
 
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
 
-        // Helper functions
-        function parseSupportedPIDs(response) {
-            if (!response || response.includes('NO DATA')) return [];
-            const bytes = response.match(/[0-9A-F]{2}/g);
-            if (!bytes || bytes.length < 6) return [];
-            
-            const supported = [];
-            for (let i = 2; i < 6; i++) {
-                const byte = parseInt(bytes[i], 16);
-                for (let bit = 0; bit < 8; bit++) {
-                    if (byte & (1 << (7 - bit))) {
-                        const pid = ((i - 2) * 8 + bit + 1).toString(16).padStart(2, '0');
-                        supported.push(pid);
-                    }
-                }
-            }
-            return supported;
-        }
-
-        function getDPFStatus(code) {
-            const statuses = {
-                0: 'Inactive',
-                1: 'Active Regen',
-                2: 'Forced Regen',
-                3: 'Service Required',
-                4: 'Regen Completed'
-            };
-            return statuses[code] || `Code: ${code}`;
-        }
-
-        function getGlowPlugStatus(code) {
-            const statuses = {
-                0: 'Off',
-                1: 'Pre-heating',
-                2: 'Active',
-                3: 'Post-heating',
-                4: 'Error'
-            };
-            return statuses[code] || `Code: ${code}`;
-        }
-
-        async function readFreezeFrame() {
-            const response = await sendCommand('0202');
-            if (!response || response.includes('NO DATA')) return;
-            
-            // Parse freeze frame data
-            const freezeData = parseFreezeFrameData(response);
-            updateFreezeFrameDisplay(freezeData);
-        }
-
-        function parseFreezeFrameData(response) {
-            // This would parse the complex freeze frame response
-            // For now, return a placeholder
-            return {
-                dtc: 'P0299',
-                rpm: 2100,
-                speed: 65,
-                coolant: 82,
-                load: 75,
-                boost: 18.5
-            };
-        }
-
-        function updateFreezeFrameDisplay(data) {
-            const freezeFrame = document.getElementById('freezeFrameData');
-            if (!data || Object.keys(data).length === 0) {
-                freezeFrame.innerHTML = `
-                    <div class="empty-state">
-                        <h3>No Freeze Frame Data</h3>
-                        <p>Freeze frame data captures engine conditions when a fault occurs</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            freezeFrame.innerHTML = `
-                <div class="dtc-item">
-                    <div>
-                        <div class="dtc-code">Fault Code</div>
-                        <div class="dtc-description">${data.dtc}</div>
-                    </div>
-                </div>
-                <div class="dtc-item">
-                    <div>
-                        <div class="dtc-code">Engine RPM</div>
-                        <div class="dtc-description">${data.rpm} RPM</div>
-                    </div>
-                </div>
-                <div class="dtc-item">
-                    <div>
-                        <div class="dtc-code">Vehicle Speed</div>
-                        <div class="dtc-description">${data.speed} km/h</div>
-                    </div>
-                </div>
-                <div class="dtc-item">
-                    <div>
-                        <div class="dtc-code">Coolant Temp</div>
-                        <div class="dtc-description">${data.coolant} °C</div>
-                    </div>
-                </div>
-                <div class="dtc-item">
-                    <div>
-                        <div class="dtc-code">Engine Load</div>
-                        <div class="dtc-description">${data.load} %</div>
-                    </div>
-                </div>
-                <div class="dtc-item">
-                    <div>
-                        <div class="dtc-code">Turbo Boost</div>
-                        <div class="dtc-description">${data.boost} PSI</div>
-                    </div>
-                </div>
-            `;
+        // Check for Web Serial API
+        if (!('serial' in navigator)) {
+            alert('Web Serial API not supported. Please use Chrome or Edge.');
         }
     </script>
 </body>
